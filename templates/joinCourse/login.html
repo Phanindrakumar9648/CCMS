@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+	<h2 class="text-blue">Login :</h2><hr>
+	<form action="{% url 'joinCourse:logins'  %}" method="post">
+	{% csrf_token %}
+		<div class="animated fadeInRight col-md-offset-2 col-md-5">
+			<div class="panel panel-info">
+			      <div class="panel-heading"><b>Login</b></div>
+			      <div class="panel-body">
+						<div class="row">
+							<div class="col-md-12">							
+							    	<img src="{% static 'Images/man.png' %}" class="col-md-offset-5 img-circle img-responsive" style="width: 50px;height: 50px;"> 							
+							</div>
+						</div><br>		      		
+						<div class="row">
+							<div class="col-md-12">
+								<div class="input-group">
+							      <span class="input-group-btn">
+							        <a class="btn btn-default "><li class="text-blue fa fa-user"></li></a>						    
+							      </span>
+							      <input type="text" name="username" placeholder="Username" class="col-md-8 form-control">
+								</div>
+							</div>
+						</div>
+						<br>
+						<div class="row">
+							<div class="col-md-12">
+								<div class="input-group">						      
+							      <input type="password" name="password" placeholder="Password" class="col-md-8 form-control">
+							      <span class="input-group-btn">
+							        <a class="btn btn-default "><li class="text-blue fa fa-lock"></li></a>						    
+							      </span>
+								</div>
+							</div>
+						</div>
+						<div>
+							{% if request.GET.next %}
+								<input type="hidden" name="next" value="{{request.GET.next}}">
+							{% endif %}
+						</div>
+						<br>
+						<div class="row">
+							<div class="col-md-6">
+								<button type="submit" class="btn btn-success btn-block">Login</button>
+							</div>
+							<div class="col-md-6">
+								<button class="btn btn-link btn-block">Forgot Password ?</button>
+							</div>
+						</div>					
+			      </div>
+			</div>		
+		</div>		
+	</form>
+</div>
+{% endblock %}

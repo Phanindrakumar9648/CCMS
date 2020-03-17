@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  {% load static %}
+  <title>CCMS</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap-theme.min.css' %}">
+  <link rel="stylesheet" href="{% static 'animate/animate.css' %}">
+  <link rel="stylesheet" href="{% static 'awesome/font-awesome.min.css' %}">	
+  <link rel="stylesheet" href="{% static 'scripts/datePicker/jquery-ui.css'%}">
+  <link rel="stylesheet" href="{% static 'scripts/datePicker/style.css'%}">
+  <script src="{% static 'scripts/jquery-3.3.1.min.js'%}"></script>
+  <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'scripts/jquery-table2excel/dist/jquery.table2excel.min.js'%}"></script>
+</head>
+<body>
+	<!-- <a href="../joinCourse/pdf.py">Link</a> -->
+
+	<div class="container-fluid">
+		{% block dashboardNavbar %}
+		<nav class="navbar navbar-default navbar-fixed-top">
+		  <div class="container-fluid">
+		    <div class="navbar-header">
+		      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span> 
+		      </button>
+		      <a class="navbar-brand" href="#">GetStarted</a>
+		    </div>
+		    <div class="collapse navbar-collapse" id="myNavbar">
+		      <ul class="nav navbar-nav">
+		        <li><a href="{% url 'joinCourse:showData' %}">Show Data</a></li> 
+		      </ul>
+		      <ul class="nav navbar-nav navbar-right">
+		      			<!-- /admin -->
+		        <li><a href="{% url 'joinCourse:logouts' %}"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+		      </ul>
+		    </div>
+		  </div>
+		</nav>
+		{% endblock %}
+	</div>
+	<br><br><br>
+	<div class="container-fluid row">
+		<div class="col-sm-12">
+			{% block dashboard %}
+
+			{% endblock %}			
+		</div>
+	</div>
+</body>
+</html>

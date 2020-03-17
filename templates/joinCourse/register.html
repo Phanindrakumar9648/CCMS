@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+	.mt{margin-top: 10px;}
+</style>
+
+<div class="container-fluid col-sm-6">
+	<form action="{% url 'joinCourse:RegisterHere' %}" method="post">
+		{% csrf_token %}
+		<div class="panel panel-primary center-block">
+			<div class="panel-heading text-center">Course Register</div>
+			<div class="panel-body">
+				<div class="row form-group">				
+					<div class="col-sm-12 mt">
+						<input type="text" name="name" id="name" class="form-control" placeholder="Enter Your Name" required="required">
+					</div>
+
+					<div class="col-sm-12 mt">
+						<select name="gender" class="form-control" placeholder="gender" required="required">
+							<option></option>
+							<option>Male</option>
+							<option>Female</option>
+						</select>					
+					</div>
+
+					<div class="col-sm-12 mt">
+						<input type="text" name="design" class="form-control" placeholder="Enter Your Designation" required="required">
+					</div>
+
+					<div class="col-sm-12 mt">
+						<input type="text" name="college" class="form-control" placeholder="College / Company Name" required="required">
+					</div>
+					<div class="col-sm-12 mt">
+						<select name="courses" class="form-control" required="required">
+							<option></option>
+							<option>C</option>
+							<option>C++</option>
+							<option>Python Programming</option>
+							<option>C#</option>					
+							<option>Java</option>
+							<option>PHP</option>
+							<option>Web Technologies</option>
+						</select>					
+					</div>
+					<div class="col-sm-12 mt">
+						<input type="text" name="mobile" class="form-control" placeholder="Enter Mobile Number" required="required">
+					</div>
+
+					<div class="col-sm-12 mt">
+						<input type="text" name="email" class="form-control" placeholder="Enter Your MailId" required="required">
+					</div>
+
+					<div class="col-sm-12 mt">
+						<input type="text" name="date" id="datepickers" class="form-control" placeholder="Join Date" value="2018-05-17" readonly="readonly" required="required">
+					</div>
+					<div class="col-sm-12 mt">
+						<input type="submit" class="center-block btn btn-primary" value="Register">
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
+<script src="{% static 'scripts/datePicker/jquery-1.12.4.js' %}"></script>
+  <script src="{% static 'scripts/datePicker/jquery-ui.js' %}"></script>
+  <script>
+	  $( function() {
+	    $( "#datepicker" ).datepicker({
+	      changeMonth: true,
+	      changeYear: true
+	    });
+	  } );
+ </script>
+{% endblock %}

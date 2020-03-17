@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container animated fadeInRight">
+	<div class="center-block">
+		<a class="btn btn-default btn-xs glyphicon glyphicon-circle-arrow-left" href="{% url 'joinCourse:login' %}"></a>
+		<h1 class="text-danger">ERROR Login Try Again Later...!</h1><br>
+		<img src="{% static 'Images/ship.png' %}" style="height: 250px;width:300px;" class="img-responsive">
+	</div>
+</div>
+	
+{% endblock %}

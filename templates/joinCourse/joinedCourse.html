@@ -1,0 +1,142 @@
+{% extends 'dashBoard.html' %}
+{% load static %}
+{% block dashboard %}
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
+<script>
+
+</script>
+<div class="row">
+	<form action="{% url 'joinCourse:getDetails' %}" method="post">
+	{% csrf_token %}
+		<div class="col-sm-6">		
+			<select class="form-control" name="course">
+				<option>Python Programming</option>
+				<option>C</option>
+				<option>c++ language</option>
+				<option>C#</option>
+				<option>java</option>
+				<option>PHP</option>
+				<option>web technologies</option>
+			</select>	
+		</div>
+		<div class="col-sm-3">
+			<button type="submit" class="btn btn-primary btn-sm">GetDetails</button>
+		</div>			
+	</form>
+
+</div>
+<br>
+<div class="row">
+	<div class="container col-sm-9">
+		{% if register %} <!-- for song in album.song_set.all -->
+		<div class="table-responsive">	
+			<table class="table table-bordered" id='table2excel'>
+				<tr class="bg-primary">
+					<th>S.no</th>
+					<th>Name</th>
+					<th>Designation</th>
+					<th>college</th>
+					<th>Joined Course</th>
+					<th>Mobile</th>
+					<th>Email</th>
+					<th>Joined Date</th>
+					<th><img src="{%static 'images/excel.gif'%}" id="Xcel" class="noExl"></th>
+					<th class="noExl">Generate Certificate</th>
+					<th class="noExl"><a href="{% url 'joinCourse:GenAll' %}"  class="btn btn-info btn-xs" target="course">ALL</a></th>
+				</tr>
+			{% for register in register %}
+				<tr>
+					<td>{{ forloop.counter }}</td>
+					<td>{{register.name}}</td>
+					<td>{{register.designation}}</td>
+					<td>{{register.college}}</td>
+					<td>{{register.course}}</td>
+					<td>{{register.mobile}}</td>
+					<td>{{register.email}}</td>
+					<td colspan="2">{{register.joined_date}}</td>
+					<td class="noExl" colspan="2"><a href="{% url 'joinCourse:ShowOne' register.id %}" ><button class="btn btn-warning btn-sm">Certificate</button></a></td>
+				</tr>			
+			{% endfor %}
+			</table>
+		</div>
+	<script>
+		$("#Xcel").click(function() {
+			$("#table2excel").table2excel({
+				exclude: ".noExl",
+				name: "Excel Document Name",
+				filename: "CourseReports",
+				fileext: ".pdf",
+				//exclude_img: true,
+				//exclude_links: true,
+				//exclude_inputs: true
+			});
+		});	
+	</script>
+
+		{% elif registerOne %}
+			{% for register in registerOne %}
+				{{register.name}}
+			{% endfor %}
+
+		{% elif tech %}
+		<div class="table-responsive">	
+			<table class="table table-bordered" id='table2excel1'>
+				<tr class="bg-primary">
+					<th>S.no</th>
+					<th>Name</th>
+					<th>Designation</th>
+					<th>college</th>
+					<th>Joined Course</th>
+					<th>Mobile</th>
+					<th>Email</th>
+					<th>Joined Date</th>
+					<th><img src="{%static 'images/excel.gif'%}" id="Xcel1" class="noExl"></th>
+					<th class="noExl">Generate Certificate</th>
+					<th class="noExl"><a href="{% url 'joinCourse:GenAll' %}"  class="btn btn-info btn-xs" target="course">ALL</a></th>
+				</tr>
+			{%for course in tech %}
+				<tr>
+					<td>{{ forloop.counter }}</td>
+					<td>{{course.name}}</td>
+					<td>{{course.designation}}</td>
+					<td>{{course.college}}</td>
+					<td>{{course.course}}</td>
+					<td>{{course.mobile}}</td>
+					<td>{{course.email}}</td>
+					<td colspan="2">{{course.joined_date}}</td>
+					<td class="noExl" colspan="2"><a href="{% url 'joinCourse:ShowOne' course.id %}" ><button class="btn btn-warning btn-sm">Certificate</button></a></td>
+				</tr>
+				<script>
+					var course={{course.course}}
+				</script>				
+			{% endfor %}
+
+			</table>
+			<script>
+				jQuery("#Xcel1").click(function() {
+					jQuery("#table2excel1").table2excel({
+						exclude: ".noExl",
+						name: "Excel Document Name",
+						filename: "Data_CourseReports",
+						fileext: ".pdf",
+						//exclude_img: true,
+						//exclude_links: true,
+						//exclude_inputs: true
+					});
+				});	
+			</script>
+		</div>
+		{% else %}
+			<h3 class="text-danger">Not Found -- 404 -- ErroR</h3>
+		{% endif %}
+		
+	</div>
+	<div class="col-sm-3">
+ 		<div class="embed-responsive embed-responsive-16by9 panel panel-info">
+		  <iframe src=""  style="height: 800px;" name="course"></iframe>
+		</div>
+	</div>	
+</div>
+
+{% endblock %}

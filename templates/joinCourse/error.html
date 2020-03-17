@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+	<div class="center-block">
+		<a class="btn btn-default btn-xs glyphicon glyphicon-circle-arrow-left" href="{% url 'joinCourse:courseReg' %}"></a>
+		<h1 class="text-danger">ERROR Try Again Later...!</h1><br>
+		<img src="{% static 'Images/confuse1.png' %}" style="height: 250px;width: 50%" class="img-responsive">
+	</div>
+</div>
+	
+{% endblock %}

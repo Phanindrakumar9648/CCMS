@@ -1,0 +1,17 @@
+{% extends 'dashBoard.html' %}
+{% load static %}
+{% block dashboard %}
+<style>
+	.mp{padding: 15px;box-shadow: 0px 0px 5px #ccc;}
+</style>
+<h2 class="text-center text-primary"> UPLOAD CSV FILE </h2>
+<hr>
+<div class="col-sm-4 panel panel-body mp col-sm-offset-3">
+	<form action="{% url 'joinCourse:uploadData'%}" class="row" enctype="multipart/form-data" method="POST">
+	{% csrf_token %}
+		<input type="file" name="csv_file" required="required" class=" form-control">
+		<input type="submit" value="Upload" class="center-block btn btn-primary btn-sm">
+	</form>
+</div>
+
+{% endblock %}
